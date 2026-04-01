@@ -2,6 +2,7 @@ services:
   - type: web
     name: saydx-system
     env: node
+    plan: free
     region: frankfurt # Optional: frankfurt is good for CIS
     buildCommand: npm install && npm run build
     startCommand: npm run db:push && npm run start
@@ -17,4 +18,5 @@ databases:
   - name: saydx-db
     databaseName: saydx
     user: saydx_user
+    plan: free
     region: frankfurt
