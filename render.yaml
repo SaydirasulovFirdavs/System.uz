@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: saydx-system
+    env: node
+    region: frankfurt # Optional: frankfurt is good for CIS
+    buildCommand: npm install && npm run build
+    startCommand: npm run db:push && npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATABASE_URL
+        fromDatabase:
+          name: saydx-db
+          property: connectionString
+
+databases:
+  - name: saydx-db
+    databaseName: saydx
+    user: saydx_user
+    region: frankfurt
